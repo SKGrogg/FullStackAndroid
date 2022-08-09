@@ -1,0 +1,8 @@
+[submodule "quarkusrest"]
+	path = quarkusrest
+	url = https://skgrogg@bitbucket.org/skgrogg/quarkusrest.git
+	branch = master
+[submodule "awscontact"]
+	path = awscontact
+	url = https://skgrogg@bitbucket.org/skgrogg/awscontact.git
+	branch = master
