@@ -3,12 +3,14 @@ package edu.uchicago.skgrogg.movies.common
 
 
 import com.google.gson.Gson
-import edu.uchicago.skgrogg.movies.models.Item
-import edu.uchicago.skgrogg.movies.models.VolumesResponse
-import edu.uchicago.skgrogg.movies.models.Result
 import edu.uchicago.skgrogg.movies.models.MoviesResponse
+import edu.uchicago.skgrogg.movies.models.Result
 
 object Constants {
+    var id = "ID"
+    var item = "ITEM"
+    var favMode = "FAVORITE_MODE"
+    var action = "ACTION"
     val movieURL = "https://api.themoviedb.org/"
     val apiKey = "51a9be0f300c3e328f4ab8b660df95aa"
     val sortBy = "popularity.desc"

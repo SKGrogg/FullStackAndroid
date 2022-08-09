@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: com.amazonaws:aws-android-sdk-auth-ui:2.13.7@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/29d98a506545b3e17ac89627ea4d87ce/transformed/jetified-aws-android-sdk-auth-ui-2.13.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/29d98a506545b3e17ac89627ea4d87ce/transformed/jetified-aws-android-sdk-auth-ui-2.13.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/29d98a506545b3e17ac89627ea4d87ce/transformed/jetified-aws-android-sdk-auth-ui-2.13.7/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-auth-ui/2.13.7/eddfe19149a0fe6d41682b63668d9d2f8f46ad0c/aws-android-sdk-auth-ui-2.13.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-auth-ui/2.13.7/d992c45f4cf9424027a51c16a51eafb27ea56917/aws-android-sdk-auth-ui-2.13.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
