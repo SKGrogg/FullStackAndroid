@@ -19,8 +19,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import edu.uchicago.skgrogg.movies.R
+import edu.uchicago.skgrogg.movies.screens.favorites.FavoriteFragment
 import edu.uchicago.skgrogg.movies.widgets.BottomNavigationBar
 
 @Composable
@@ -51,14 +53,8 @@ fun FavoritesScreen(navController: NavController) {
                 .background(colorResource(id = R.color.cardview_shadow_start_color))
                 .wrapContentSize(Alignment.Center)
         ) {
-            Text(
-                text = "Favorites View",
-                fontWeight = FontWeight.Bold,
-                color = Color.White,
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                textAlign = TextAlign.Center,
-                fontSize = 25.sp
-            )
+
+            Fragment(R.layout.activity_main)
         }
     }
 }

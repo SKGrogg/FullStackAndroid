@@ -1,6 +1,7 @@
 package edu.uchicago.skgrogg.movies.screens.favorites
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,8 +26,10 @@ class FavoriteFragment : Fragment() {
     private var columnCount = 1
 
     var mAdapter: FavoriteRecyclerViewAdapter? = null
+    var mList = ArrayList<Favorite>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("Crashing Check", "Fragment was Created!")
         super.onCreate(savedInstanceState)
 
     }
@@ -34,7 +37,10 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val model: FavoriteViewModel by viewModels()
-        model.mFavorites.observe(viewLifecycleOwner, Observer<List<Favorite>> { favorite ->
+        model.mFavorites.observe(viewLifecycleOwner, { favorites ->
+            mList.clear()
+            mList.addAll(favorites!!)
+            mAdapter?.notifyItemRangeChanged(0, mList.size-1)
 
         })
     }
@@ -47,7 +53,7 @@ class FavoriteFragment : Fragment() {
 
         // Set the adapter
         if (view is RecyclerView) {
-            mAdapter = FavoriteRecyclerViewAdapter(PlaceholderContent.ITEMS)
+            mAdapter = FavoriteRecyclerViewAdapter(mList)
             with(view) {
                 layoutManager = LinearLayoutManager(context)
                 adapter = mAdapter

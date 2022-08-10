@@ -9,13 +9,8 @@ import edu.uchicago.skgrogg.movies.R
 import edu.uchicago.skgrogg.movies.databinding.FragmentItemBinding
 import edu.uchicago.skgrogg.movies.models.Favorite
 
-import edu.uchicago.skgrogg.movies.screens.favorites.placeholder.PlaceholderContent.PlaceholderItem
-import edu.uchicago.skgrogg.movies.screens.favorites.databinding.FragmentItemBinding
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
+
 class FavoriteRecyclerViewAdapter(
     private val values: List<Favorite>
 ) : RecyclerView.Adapter<FavoriteRecyclerViewAdapter.ViewHolder>() {

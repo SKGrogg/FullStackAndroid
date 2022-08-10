@@ -30,29 +30,9 @@ class MainActivity : ComponentActivity() {
 
         }
 
-        getFavorites()
     }
 
-    fun getFavorites(){
-        val client = FavoritesClient().favoritesApi().build().create(FavoritesApi::class.java)
-        client.getFavorites("Seany Boy").enqueue(object: Callback<List<Favorite>>{
-            override fun onResponse(
-                call: Call<List<Favorite>>,
-                response: Response<List<Favorite>>
-            ) {
-                val favorites = response.body()
-                favorites?.let{
-                    for (favorite in favorites){
-                        Log.d("Main Activity", "onResponse: ${favorite.title}")
-                    }
-                }
-            }
 
-            override fun onFailure(call: Call<List<Favorite>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
 }
 
 
