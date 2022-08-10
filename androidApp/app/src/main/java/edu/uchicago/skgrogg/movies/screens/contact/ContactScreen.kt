@@ -42,9 +42,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import javax.security.auth.Subject
 
-val subjectText = ""//contactViewModel.subjectText.value
-val bodyText = ""//contactViewModel.bodyText.value
-val emailText = ""//contactViewModel.emailText.value
+
 @Composable
 fun ContactScreen(
     contactViewModel: ContactViewModel,
@@ -112,13 +110,7 @@ fun ContactScreen(
             )
             Spacer(modifier = Modifier.height(10.dp))
             FloatingActionButton(
-                onClick =
-                {
-                    // Create a new coroutine in the event handler to show a snackbar
-                    scope.launch {
-                        contactViewModel.onContact()
-                        scaffoldState.snackbarHostState.showSnackbar("Email Sent!")
-                    }},
+                onClick = contactViewModel::onSubmit,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Row(Modifier.padding(start = 12.dp, end = 12.dp)) {

@@ -6,9 +6,12 @@ import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import edu.uchicago.skgrogg.favs.data.repository.MoviesRepository
+import edu.uchicago.skgrogg.movies.repository.EmailRepository
+import kotlinx.coroutines.launch
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -22,6 +25,7 @@ class ContactViewModel @Inject constructor(
 ) :
     ViewModel() {
 
+    val emailRepo = EmailRepository()
     //////////////////////////////////////////
     // MUTABLE-STATES AND OBSERVABLE STATES
     //////////////////////////////////////////
@@ -54,8 +58,7 @@ class ContactViewModel @Inject constructor(
         _emailText.value = email
     }
 
-
-
+    /*
    fun onContact() {
         if ((_subjectText.value.length == 0) || (_bodyText.value.length == 0) || (_emailText.value.length == 0)){
             Log.d("Contact Error: ", "'Subject': " + _subjectText.value + ", 'Body':" + _bodyText.value + ", 'Email':" + _emailText.value)
@@ -82,6 +85,21 @@ class ContactViewModel @Inject constructor(
          val response: Response = client.newCall(request).execute()
          Log.d("Email Attempt", response.toString())
      }
+
+     */
+
+    fun onSubmit() {
+        if ((_subjectText.value.length == 0) || (_bodyText.value.length == 0) || (_emailText.value.length == 0)){
+            Toast.makeText(application, "Please file out all field!", Toast.LENGTH_LONG).show()
+        }else{
+        }
+        viewModelScope.launch {
+            emailRepo.Emailer(_subjectText.value, _bodyText.value, _emailText.value)
+        }
+        _subjectText.value = ""
+        _bodyText.value = ""
+        _emailText.value = ""
+    }
 
 }
 
