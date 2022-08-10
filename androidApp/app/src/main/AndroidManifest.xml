@@ -14,8 +14,12 @@
         android:supportsRtl="true">
         <activity android:name=".screens.authenticate.AuthActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight"
             android:exported="true">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="edu.uchicago.skgrogg.movies.MainActivity"
@@ -23,11 +27,6 @@
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
