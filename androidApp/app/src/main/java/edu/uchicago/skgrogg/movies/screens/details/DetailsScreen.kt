@@ -27,13 +27,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.skydoves.landscapist.glide.GlideImage
+import edu.uchicago.skgrogg.movies.viewmodels.FavoriteViewModel
 import edu.uchicago.skgrogg.movies.viewmodels.MovieViewModel
 
 
 @Composable
 fun DetailsScreen(
     navController: NavController,
-    movieViewModel: MovieViewModel
+    movieViewModel: MovieViewModel,
+    favoriteViewModel: FavoriteViewModel
 ) {
 
     //observe the movie
@@ -163,9 +165,7 @@ fun DetailsScreen(
                         .padding(10.dp, 0.dp)
                         .fillMaxWidth(1f),
 
-                    onClick = {
-                        Toast.makeText(activity, "Favorite Pressed", Toast.LENGTH_LONG).show()
-                    },
+                    onClick = { favoriteViewModel.onSubmit(movie, movieViewModel.queryText.value, "Seany Boy") },
 
                     colors =
                         ButtonDefaults.buttonColors(backgroundColor = Color.Green)

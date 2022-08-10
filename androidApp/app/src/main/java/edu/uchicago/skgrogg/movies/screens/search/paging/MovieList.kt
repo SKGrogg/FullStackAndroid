@@ -21,14 +21,14 @@ import edu.uchicago.skgrogg.movies.viewmodels.MovieViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun MovieList(movieViewModel: MovieViewModel, navController: NavController) {
+fun MovieList(movieViewModel: MovieViewModel, navController: NavController, year: String) {
 
     //this is what consumes the flow
     val lazyPagingItems = movieViewModel.searchState.value.data?.collectAsLazyPagingItems()
 
     LazyColumn {
         items(lazyPagingItems!!) { movie ->
-            MovieRow(movie = movie!!) {
+            MovieRow(year, movie = movie!!) {
                 //the following lines define the onItemClick behavior
                 movieViewModel.setMovie(movie)
                 navController.navigate(

@@ -86,7 +86,7 @@ fun SearchScreen(
                     }
                 }
                 SearchOperationMovie.DONE -> {
-                    MovieList(movieViewModel, navController)
+                    MovieList(movieViewModel, navController, queryText)
                 }
                 else -> {
                     Box {}

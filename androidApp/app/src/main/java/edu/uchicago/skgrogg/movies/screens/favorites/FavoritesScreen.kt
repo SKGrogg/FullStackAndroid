@@ -19,10 +19,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import edu.uchicago.skgrogg.movies.R
-import edu.uchicago.skgrogg.movies.screens.favorites.FavoriteFragment
 import edu.uchicago.skgrogg.movies.widgets.BottomNavigationBar
 
 @Composable
@@ -54,7 +52,7 @@ fun FavoritesScreen(navController: NavController) {
                 .wrapContentSize(Alignment.Center)
         ) {
 
-            Fragment(R.layout.activity_main)
+            Text("Coming Soon!")
         }
     }
 }

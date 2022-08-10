@@ -46,7 +46,6 @@ class ContactViewModel @Inject constructor(
 
 
     fun setSubjectText(subject: String) {
-        Log.i("Subject Set: ", subject)
         _subjectText.value = subject
     }
 

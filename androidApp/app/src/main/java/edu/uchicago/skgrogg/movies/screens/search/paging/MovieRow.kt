@@ -26,15 +26,17 @@ import edu.uchicago.skgrogg.movies.models.Result
 @ExperimentalAnimationApi
 @Composable
 fun MovieRow(
+    year: String,
     movie: Result,
     onItemClick: (String) -> Unit
+
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
                 movie.title?.let {
-                    //passed down from composable (BookList) that instantiates BookRow
+                    //passed down from composable (MovieList) that instantiates BookRow
                     onItemClick(it)
                 }
             }
