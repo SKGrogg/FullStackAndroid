@@ -1,6 +1,10 @@
 package edu.uchicago.skgrogg.favs.presentation.screens.contact
 
+import android.app.Application
+import android.content.Context
+import android.util.Log
 import android.widget.EditText
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -8,7 +12,9 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,23 +29,37 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.google.gson.JsonObject
 import edu.uchicago.skgrogg.favs.screens.CustomEmailTextField
+import edu.uchicago.skgrogg.movies.MainActivity
 import edu.uchicago.skgrogg.movies.R
 import edu.uchicago.skgrogg.movies.navagation.Screen
 import edu.uchicago.skgrogg.movies.viewmodels.ContactViewModel
 import edu.uchicago.skgrogg.movies.widgets.BottomNavigationBar
+import kotlinx.coroutines.launch
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import javax.security.auth.Subject
 
+val subjectText = ""//contactViewModel.subjectText.value
+val bodyText = ""//contactViewModel.bodyText.value
+val emailText = ""//contactViewModel.emailText.value
 @Composable
 fun ContactScreen(
     contactViewModel: ContactViewModel,
-    navController: NavController)
+    navController: NavController,
+    scaffoldState: ScaffoldState = rememberScaffoldState(),
+)
 {
     val subjectText = contactViewModel.subjectText.value
     val bodyText = contactViewModel.bodyText.value
     val emailText = contactViewModel.emailText.value
 
-    Scaffold(
+    val scope = rememberCoroutineScope()
+
+
+    Scaffold(scaffoldState = scaffoldState,
         bottomBar = { BottomNavigationBar(navController) },
         topBar = {
             TopAppBar(
@@ -92,7 +112,13 @@ fun ContactScreen(
             )
             Spacer(modifier = Modifier.height(10.dp))
             FloatingActionButton(
-                onClick = contactViewModel::onContact,
+                onClick =
+                {
+                    // Create a new coroutine in the event handler to show a snackbar
+                    scope.launch {
+                        contactViewModel.onContact()
+                        scaffoldState.snackbarHostState.showSnackbar("Email Sent!")
+                    }},
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Row(Modifier.padding(start = 12.dp, end = 12.dp)) {
@@ -107,6 +133,7 @@ fun ContactScreen(
         }
     }
 }
+
 
 
 @Preview(showBackground = true)

@@ -13,20 +13,20 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class Hilt4MoviesApi {
+class Hilt4FavoritesApi {
 
 
     //uses dependency injection to instantiate a MoviesApi object
     @Provides
     @Singleton
-    fun moviesApi(): MoviesApi {
+    fun favoritesApi(): FavoritesApi {
         return Retrofit.Builder()
-            .baseUrl(Constants.movieURL)
+            .baseUrl(Constants.lightsailURL)
             //add a client allows us to intercept the network traffic
             .client(getOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(MoviesApi::class.java)
+            .create(FavoritesApi::class.java)
     }
 
 

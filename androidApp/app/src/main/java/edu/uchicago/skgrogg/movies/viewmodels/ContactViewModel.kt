@@ -66,7 +66,7 @@ class ContactViewModel @Inject constructor(
         }
     }
     fun sendEmail(subject: String, body: String, email: String){
-         val json: JsonObject = JsonObject()
+         val json = JsonObject()
          json.addProperty("subject", subject)
          json.addProperty("body", body)
          json.addProperty("email", email)
