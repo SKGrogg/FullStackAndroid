@@ -12,6 +12,7 @@ import edu.uchicago.skgrogg.favs.presentation.screens.favorites.FavoritesScreen
 import edu.uchicago.skgrogg.favs.presentation.screens.contact.ContactScreen
 import edu.uchicago.skgrogg.favs.presentation.screens.search.SearchScreen
 import edu.uchicago.skgrogg.movies.navagation.Screen
+import edu.uchicago.skgrogg.movies.viewmodels.ContactViewModel
 import edu.uchicago.skgrogg.movies.viewmodels.MovieViewModel
 
 
@@ -22,6 +23,7 @@ fun Navigation(
 ) {
 
     val movieViewModel: MovieViewModel = hiltViewModel()
+    val contactViewModel: ContactViewModel = hiltViewModel()
     NavHost(navController, startDestination = Screen.Search.route) {
         composable(Screen.Search.route) {
             SearchScreen(movieViewModel = movieViewModel, navController = navController)
@@ -33,7 +35,7 @@ fun Navigation(
         }
 
         composable(Screen.Contact.route) {
-            ContactScreen(navController)
+            ContactScreen(contactViewModel = contactViewModel, navController = navController)
         }
 
 
