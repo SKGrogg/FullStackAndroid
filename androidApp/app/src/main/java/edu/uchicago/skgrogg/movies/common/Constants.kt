@@ -15,8 +15,8 @@ object Constants {
     val apiKey = "51a9be0f300c3e328f4ab8b660df95aa"
     val sortBy = "popularity.desc"
 
-    val lightsailURL = "https://quarkus-and-mongo.ssc846f0mfhpe.us-east-1.cs.amazonlightsail.com/movies"
-    val emailURL = "https://7fof14yl3j.execute-api.us-east-1.amazonaws.com/Prod/mail"
+    val lightsailURL = "https://quarkus-and-mongo.ssc846f0mfhpe.us-east-1.cs.amazonlightsail.com/movies/"
+    val emailURL = "https://7fof14yl3j.execute-api.us-east-1.amazonaws.com/Prod/mail/"
 
     val fakeMovie: Result
     val fakeMovieResponse: MoviesResponse

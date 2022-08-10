@@ -11,22 +11,14 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-class Hilt4FavoritesApi {
+class FavoritesClient {
 
 
     //uses dependency injection to instantiate a MoviesApi object
-    @Provides
-    @Singleton
-    fun favoritesApi(): FavoritesApi {
+    fun favoritesApi(): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(Constants.lightsailURL)
-            //add a client allows us to intercept the network traffic
-            .client(getOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(FavoritesApi::class.java)
     }
 
 

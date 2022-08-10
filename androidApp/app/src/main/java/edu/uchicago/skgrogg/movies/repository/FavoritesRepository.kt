@@ -1,27 +1,21 @@
 package edu.uchicago.skgrogg.favs.data.repository
 
 
-import edu.uchicago.skgrogg.movies.common.Constants
-import edu.uchicago.skgrogg.movies.models.MoviesResponse
+import android.util.Log
+import edu.uchicago.skgrogg.movies.models.Favorite
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
-import javax.inject.Inject
 
 //simple movies repo
-class FavoritesRepository @Inject constructor(private val favoritesApi: FavoritesApi) {
+class FavoritesRepository{
 
-    //this must be called on a background thread b/c it is long-running
-    //here, I pass in the parameters I need, which then re-pass to the instantated interface
-    suspend fun getFavorites(
-        user: String
-    ): Response<ResponseBody> {
-        return withContext(Dispatchers.IO) {
-            favoritesApi.getFavorites(
-                user = user
-            )
-        }
+    val mClient = FavoritesClient().favoritesApi().build().create(FavoritesApi::class.java)
+
+    fun getFavorites(): Call<List<Favorite>>{
+        return mClient.getFavorites("Seany Boy")
     }
 }
 
