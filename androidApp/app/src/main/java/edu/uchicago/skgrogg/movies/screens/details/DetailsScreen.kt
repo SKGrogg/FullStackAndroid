@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.SearchManager
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -100,8 +101,7 @@ fun DetailsScreen(
                                 sendIntent.putExtra(
                                     SearchManager.QUERY,
                                     movie.title
-                                ) // query contains search string
-                                //sendIntent.data = Uri.parse("google.com/search?q="+movie.title.filter { !it.isWhitespace() })
+                                )
                                 activity?.startActivity(sendIntent)
                             }
                             .align(Alignment.CenterVertically)
@@ -169,7 +169,7 @@ fun DetailsScreen(
                         .padding(10.dp, 0.dp)
                         .fillMaxWidth(1f),
 
-                    onClick = { favoriteViewModel.onSubmit(movie, movieViewModel.queryText.value, Constants.userEmial) },
+                    onClick = { favoriteViewModel.onSubmit(movie, movieViewModel.queryText.value, Constants.userEmial)},
 
                     colors =
                         ButtonDefaults.buttonColors(backgroundColor = Color.Green)
