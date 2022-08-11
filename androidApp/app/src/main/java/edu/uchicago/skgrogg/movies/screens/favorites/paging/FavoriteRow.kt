@@ -85,13 +85,6 @@ fun FavoriteRow(favorite: Favorite,
 
             }
 
-            Button(onClick = { favoriteViewModel.onDelete(favorite) }) {
-                Icon(imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete",
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .padding(20.dp, 0.dp, 0.dp, 0.dp))
-            }
 
 
 
