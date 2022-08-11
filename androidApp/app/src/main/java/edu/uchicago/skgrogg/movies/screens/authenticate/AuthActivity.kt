@@ -68,7 +68,7 @@ class AuthActivity: AppCompatActivity() {
                 Token::class.java
             )
             Cache.getInstance().userEmail = token.email
-           // Constants.userEmial = token.email
+            Constants.userEmial = token.email
         } catch (e: Exception) {
             e.printStackTrace()
         }

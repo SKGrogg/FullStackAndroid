@@ -4,7 +4,7 @@ package edu.uchicago.skgrogg.favs.presentation.screens.details
 import android.app.Activity
 import android.app.SearchManager
 import android.content.Intent
-import android.widget.Toast
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -77,17 +78,16 @@ fun DetailsScreen(
                         .align(Alignment.CenterVertically)
                 ) {
 
-                    Icon(imageVector = Icons.Default.Share,
+                    Icon(imageVector = Icons.Default.ShoppingCart,
                         contentDescription = "Share",
                         modifier = Modifier
                             .clickable {
-                                val sendIntent = Intent(Intent.ACTION_SEND)
-                                sendIntent.type = "text/plain"
-                                sendIntent.putExtra(
-                                    Intent.EXTRA_TEXT,
-                                    "You must check out this Movie!: ${movie.title}"
-                                )
-                                activity?.startActivity(sendIntent)
+                                val rentURL = "https://www.amazon.com/s?k=" + movie.title +"&i=instant-video"
+                                val browserIntent =
+                                    Intent(Intent.ACTION_VIEW, Uri.parse(rentURL))
+                                activity?.startActivity(browserIntent)
+                                //val sendIntent = Intent(Intent.ACTION_SEND)
+                                //activity?.startActivity(sendIntent)
                             }
                             .align(Alignment.CenterVertically)
                             .padding(10.dp, 0.dp, 0.dp, 0.dp))
@@ -97,7 +97,10 @@ fun DetailsScreen(
                         modifier = Modifier
                             .clickable {
                                 val sendIntent = Intent(Intent.ACTION_WEB_SEARCH)
-                                sendIntent.putExtra(SearchManager.QUERY, movie.title) // query contains search string
+                                sendIntent.putExtra(
+                                    SearchManager.QUERY,
+                                    movie.title
+                                ) // query contains search string
                                 //sendIntent.data = Uri.parse("google.com/search?q="+movie.title.filter { !it.isWhitespace() })
                                 activity?.startActivity(sendIntent)
                             }
