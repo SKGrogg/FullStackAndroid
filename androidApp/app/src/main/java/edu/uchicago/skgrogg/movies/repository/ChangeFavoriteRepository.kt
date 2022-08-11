@@ -11,7 +11,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import javax.inject.Inject
 
 
-class AddFavoriteRepository  @Inject constructor() {
+class ChangeFavoriteRepository  @Inject constructor() {
 
     suspend fun addMovie(title: String, year: Int, overview: String,
         posterPath: String, video: String, user: String){
@@ -31,5 +31,20 @@ class AddFavoriteRepository  @Inject constructor() {
             println(response)
         }
 
+    }
+
+    suspend fun deleteFavorite(id: String){
+        return withContext(Dispatchers.IO) {
+            val client = OkHttpClient().newBuilder()
+                .build()
+            val mediaType = "application/json".toMediaTypeOrNull()!!
+            val body: RequestBody = "".toRequestBody(mediaType)
+            val request: Request = Request.Builder()
+                .url("https://quarkus-and-mongo.ssc846f0mfhpe.us-east-1.cs.amazonlightsail.com/movies/delete/" + id)
+                .method("DELETE", body)
+                .build()
+            val response: okhttp3.Response = client.newCall(request).execute()
+            println(response)
+        }
     }
 }

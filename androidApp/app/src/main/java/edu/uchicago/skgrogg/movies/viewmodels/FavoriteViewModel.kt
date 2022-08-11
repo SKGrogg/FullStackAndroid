@@ -1,17 +1,14 @@
 package edu.uchicago.skgrogg.movies.viewmodels
 
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.uchicago.skgrogg.favs.data.repository.FavoritesRepository
-import edu.uchicago.skgrogg.favs.presentation.search.SearchStateMovie
 import edu.uchicago.skgrogg.movies.common.Constants
 import edu.uchicago.skgrogg.movies.models.Favorite
-import edu.uchicago.skgrogg.movies.repository.AddFavoriteRepository
+import edu.uchicago.skgrogg.movies.repository.ChangeFavoriteRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +18,7 @@ import edu.uchicago.skgrogg.movies.screens.favorites.paging.SearchStateFavorite
 
 class FavoriteViewModel: ViewModel() {
 
-    val addFavRepo = AddFavoriteRepository()
+    val changeFavRepo = ChangeFavoriteRepository()
 
     val favoritesRepository = FavoritesRepository();
 
@@ -112,8 +109,14 @@ class FavoriteViewModel: ViewModel() {
 
     fun onSubmit(movie: Result, year: String, user: String) {
         viewModelScope.launch {
-            addFavRepo.addMovie(movie.title, year.toInt(), movie.overview, movie.posterPath,
+            changeFavRepo.addMovie(movie.title, year.toInt(), movie.overview, movie.posterPath,
                                     movie.posterPath, user)
+        }
+    }
+
+    fun onDelete(favorite: Favorite){
+        viewModelScope.launch{
+            changeFavRepo.deleteFavorite(favorite.id)
         }
     }
 }

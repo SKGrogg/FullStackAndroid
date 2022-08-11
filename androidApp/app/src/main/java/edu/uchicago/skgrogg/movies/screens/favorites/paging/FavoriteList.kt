@@ -47,7 +47,7 @@ fun FavoriteList(favoritesViewModel: FavoriteViewModel, navController: NavContro
         }else{
             Log.d("Favorites Loading", "Trying the Row Loop")
             favoritesViewModel.mFavorites.value?.forEach{ favorite ->
-                FavoriteRow(favorite)
+                FavoriteRow(favorite, favoritesViewModel)
             }
         }
         Log.d("Favorites Loading", "Response is")
