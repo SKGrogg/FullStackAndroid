@@ -2,6 +2,7 @@ package edu.uchicago.skgrogg.favs.data.repository
 
 
 import android.util.Log
+import edu.uchicago.skgrogg.movies.common.Constants
 import edu.uchicago.skgrogg.movies.models.Favorite
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,7 +16,7 @@ class FavoritesRepository{
     val mClient = FavoritesClient().favoritesApi().build().create(FavoritesApi::class.java)
 
     fun getFavorites(): Call<List<Favorite>>{
-        return mClient.getFavorites("Seany Boy")
+        return mClient.getFavorites(Constants.userEmial)
     }
 }
 

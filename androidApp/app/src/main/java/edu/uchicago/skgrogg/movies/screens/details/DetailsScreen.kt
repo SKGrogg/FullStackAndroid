@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.skydoves.landscapist.glide.GlideImage
+import edu.uchicago.skgrogg.movies.common.Constants
 import edu.uchicago.skgrogg.movies.viewmodels.FavoriteViewModel
 import edu.uchicago.skgrogg.movies.viewmodels.MovieViewModel
 
@@ -165,7 +166,7 @@ fun DetailsScreen(
                         .padding(10.dp, 0.dp)
                         .fillMaxWidth(1f),
 
-                    onClick = { favoriteViewModel.onSubmit(movie, movieViewModel.queryText.value, "Seany Boy") },
+                    onClick = { favoriteViewModel.onSubmit(movie, movieViewModel.queryText.value, Constants.userEmial) },
 
                     colors =
                         ButtonDefaults.buttonColors(backgroundColor = Color.Green)

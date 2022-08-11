@@ -1,5 +1,6 @@
 package edu.uchicago.skgrogg.favs.presentation.screens.search
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -20,6 +21,7 @@ import edu.uchicago.skgrogg.favs.presentation.search.widgets.MovieList
 import edu.uchicago.skgrogg.favs.screens.CustomTextField
 import edu.uchicago.skgrogg.movies.viewmodels.MovieViewModel
 import edu.uchicago.skgrogg.favs.presentation.search.SearchOperationMovie
+import edu.uchicago.skgrogg.movies.cache.Cache
 import edu.uchicago.skgrogg.movies.widgets.BottomNavigationBar
 
 
@@ -30,6 +32,8 @@ fun SearchScreen(
 ) {
     val state = movieViewModel.searchState.value
     val queryText = movieViewModel.queryText.value
+
+    Log.d("Cognito", "User Email is:" + Cache.getInstance().userEmail)
 
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) },

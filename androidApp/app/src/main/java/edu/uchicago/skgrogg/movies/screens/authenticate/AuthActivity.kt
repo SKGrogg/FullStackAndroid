@@ -8,6 +8,7 @@ import com.amazonaws.mobile.client.*
 import com.google.gson.Gson
 import edu.uchicago.skgrogg.movies.MainActivity
 import edu.uchicago.skgrogg.movies.cache.Cache
+import edu.uchicago.skgrogg.movies.common.Constants
 import edu.uchicago.skgrogg.movies.common.utils.JWTUtils
 import edu.uchicago.skgrogg.movies.models.Token
 import java.lang.Boolean
@@ -67,6 +68,7 @@ class AuthActivity: AppCompatActivity() {
                 Token::class.java
             )
             Cache.getInstance().userEmail = token.email
+           // Constants.userEmial = token.email
         } catch (e: Exception) {
             e.printStackTrace()
         }

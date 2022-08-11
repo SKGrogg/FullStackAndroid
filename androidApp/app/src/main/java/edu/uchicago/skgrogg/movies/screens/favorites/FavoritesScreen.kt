@@ -67,34 +67,6 @@ fun FavoritesScreen(favoriteViewModel: FavoriteViewModel,
                     FavoriteList(favoriteViewModel, navController)
                 }
             }
-            /*
-            when (state.searchOperationFavorite) {
-                SearchOperationFavorite.LOADING -> {
-                    Log.d("Favorites Loading", "Made it to Loading")
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(16.dp)
-                    ) {
-                        CircularProgressIndicator(
-                            modifier = Modifier
-                                .padding(12.dp)
-                                .align(
-                                    Alignment.Center
-                                )
-                        )
-                    }
-                }
-                SearchOperationFavorite.DONE -> {
-                    Log.d("Favorites Loading", "Made it to Done")
-                    FavoriteList(favoriteViewModel, navController)
-                }
-                else -> {
-                    Log.d("Favorites Loading", "Dropped into else")
-                    Box {}
-                }
-            }
-            */
         }
     }
 }
