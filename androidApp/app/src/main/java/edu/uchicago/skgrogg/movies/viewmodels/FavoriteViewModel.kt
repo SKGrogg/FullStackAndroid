@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.uchicago.skgrogg.favs.data.repository.FavoritesRepository
+import edu.uchicago.skgrogg.favs.presentation.search.SearchStateMovie
+import edu.uchicago.skgrogg.movies.common.Constants
 import edu.uchicago.skgrogg.movies.models.Favorite
 import edu.uchicago.skgrogg.movies.repository.AddFavoriteRepository
 import kotlinx.coroutines.launch
@@ -15,10 +17,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import edu.uchicago.skgrogg.movies.models.Result
+import edu.uchicago.skgrogg.movies.screens.favorites.paging.SearchStateFavorite
 
 class FavoriteViewModel: ViewModel() {
 
     val addFavRepo = AddFavoriteRepository()
+
+    val favoritesRepository = FavoritesRepository();
 
     val mFavorites = MutableLiveData<List<Favorite>?>()
 
@@ -40,8 +45,15 @@ class FavoriteViewModel: ViewModel() {
     private var _userText = mutableStateOf<String>("")
     val userText: State<String> = _userText
 
+
+    var _favorite = mutableStateOf<Favorite>(Constants.fakeFavorite)
+    val favorite: State<Favorite> = _favorite
+
+    val _searchState = mutableStateOf(SearchStateFavorite())
+    var searchState: State<SearchStateFavorite> = _searchState
+
     init {
-        getFavorites()
+        //getFavorites()
     }
 
     fun setTitleText(title: String) {
@@ -68,9 +80,20 @@ class FavoriteViewModel: ViewModel() {
         _userText.value = user
     }
 
+    //////////////////////////////////////////
+    // FUNCTIONS
+    //////////////////////////////////////////
+    fun setFavorite(favorite: Favorite) {
+        _favorite.value = favorite
+    }
 
-    private fun getFavorites() {
-        FavoritesRepository().getFavorites().enqueue(object: Callback<List<Favorite>> {
+    fun getList(): MutableLiveData<List<Favorite>?>{
+        return mFavorites
+    }
+
+
+    fun getFavorites() {
+        favoritesRepository.getFavorites().enqueue(object: Callback<List<Favorite>> {
             override fun onResponse(
                 call: Call<List<Favorite>>,
                 response: Response<List<Favorite>>

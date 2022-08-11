@@ -33,6 +33,7 @@ fun MovieList(movieViewModel: MovieViewModel, navController: NavController, year
                 movieViewModel.setMovie(movie)
                 navController.navigate(
                     route = Screen.Detail.route
+                //NEW COMMENT
                 )
             }
         }

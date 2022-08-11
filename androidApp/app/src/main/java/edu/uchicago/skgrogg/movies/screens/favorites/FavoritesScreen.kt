@@ -1,10 +1,9 @@
 package edu.uchicago.skgrogg.favs.presentation.screens.favorites
 
+import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -20,11 +19,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import edu.uchicago.skgrogg.favs.presentation.search.SearchOperationMovie
+import edu.uchicago.skgrogg.favs.presentation.search.widgets.MovieList
 import edu.uchicago.skgrogg.movies.R
+import edu.uchicago.skgrogg.movies.screens.favorites.paging.FavoriteList
+import edu.uchicago.skgrogg.movies.screens.favorites.paging.SearchOperationFavorite
+import edu.uchicago.skgrogg.movies.viewmodels.FavoriteViewModel
+import edu.uchicago.skgrogg.movies.viewmodels.MovieViewModel
 import edu.uchicago.skgrogg.movies.widgets.BottomNavigationBar
 
 @Composable
-fun FavoritesScreen(navController: NavController) {
+fun FavoritesScreen(favoriteViewModel: FavoriteViewModel,
+                    navController: NavController)
+{
+    val state = favoriteViewModel.searchState.value
+
     Scaffold(
         bottomBar = { BottomNavigationBar(navController) },
         topBar = {
@@ -52,7 +61,40 @@ fun FavoritesScreen(navController: NavController) {
                 .wrapContentSize(Alignment.Center)
         ) {
 
-            Text("Coming Soon!")
+            when(true) {
+                true -> {
+                    Log.d("Favorites Loading", "Trying to Force Load")
+                    FavoriteList(favoriteViewModel, navController)
+                }
+            }
+            /*
+            when (state.searchOperationFavorite) {
+                SearchOperationFavorite.LOADING -> {
+                    Log.d("Favorites Loading", "Made it to Loading")
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp)
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .padding(12.dp)
+                                .align(
+                                    Alignment.Center
+                                )
+                        )
+                    }
+                }
+                SearchOperationFavorite.DONE -> {
+                    Log.d("Favorites Loading", "Made it to Done")
+                    FavoriteList(favoriteViewModel, navController)
+                }
+                else -> {
+                    Log.d("Favorites Loading", "Dropped into else")
+                    Box {}
+                }
+            }
+            */
         }
     }
 }

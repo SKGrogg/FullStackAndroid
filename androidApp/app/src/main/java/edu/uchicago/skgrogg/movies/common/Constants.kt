@@ -3,6 +3,7 @@ package edu.uchicago.skgrogg.movies.common
 
 
 import com.google.gson.Gson
+import edu.uchicago.skgrogg.movies.models.Favorite
 import edu.uchicago.skgrogg.movies.models.MoviesResponse
 import edu.uchicago.skgrogg.movies.models.Result
 
@@ -20,6 +21,8 @@ object Constants {
 
     val fakeMovie: Result
     val fakeMovieResponse: MoviesResponse
+
+    val fakeFavorite: Favorite
 
     //use init to parse the raw response-body
     init {
@@ -435,6 +438,24 @@ object Constants {
         fakeMovieResponse =
             gsonMovies.fromJson<MoviesResponse>(hardCodedMovies, MoviesResponse::class.java)
         fakeMovie = fakeMovieResponse.results[0]
+
+        val gsonFavorites = Gson()
+
+        val hardcodeFavorites =
+            """
+              {
+                 "title":"Fake Movie",
+                 "year":2008,
+                 "overview":"Yuta Okkotsu is a nervous high school student who is suffering from a serious problem—his childhood friend Rika has turned into a curse and won't leave him alone. Since Rika is no ordinary curse, his plight is noticed by Satoru Gojo, a teacher at Jujutsu High, a school where fledgling exorcists learn how to combat curses. Gojo convinces Yuta to enroll, but can he learn enough in time to confront the curse that haunts him?",
+                 "posterPath":"/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg",
+                 "video":"/3pTwMUEavTzVOh6yLN0aEwR7uSy.jpg",
+                 "user":"Jujutsu Kaisen"
+              }
+            """
+
+        fakeFavorite =
+            gsonFavorites.fromJson<Favorite>(hardcodeFavorites, Favorite::class.java)
+
     }
 
 
