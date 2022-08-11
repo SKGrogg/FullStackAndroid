@@ -25,6 +25,7 @@ class AuthActivity: AppCompatActivity() {
         //if use_auth is set to false, then short circuit
         val strUseAuth: String = "false"
         if (!Boolean.parseBoolean(strUseAuth)) {
+            Log.d("Cognito Effort", DEFAULT_COM)
             Cache.getInstance().userEmail = DEFAULT_COM
             val intent = Intent(this@AuthActivity, MainActivity::class.java)
             startActivity(intent)
