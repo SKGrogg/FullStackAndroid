@@ -8,16 +8,12 @@ The app launches to a search page, where the user can input any year between 195
 
 In the search results, a user can click on a given movie to be brought to the details page. On this details page, a user can click four buttons. The first, titled "Add to Favorites", adds that movie to a list of favorites that can be found elsewhere on the app (more on that below). The other three can be found on the top bar. In order, the arrow back brings the user to the search page. The shopping cart brings the user to Amazon Prime Video to rent the movie. The information icon launches a google search of the movie.
 
-On the favorites page, the user will find a list of all the movies they've favorited so far. Unfortunately, LazyColumn proved difficult to implement in the given timeframe, so it is a static list and some items might be cut off. On this page, the user will see a red trash can next to each movie title. This allows the user to delete the movie from their list.
+On the favorites page, the user will find a list of all the movies they've favorited so far. On this page, the user will see a red trash can next to each movie title. This allows the user to delete the movie from their list.
 
 Finally, you will see that the user can go to a contact page and send an email to the developer. All three fields must be populated in order for the user to send the message. 
 
-BUGS/MISSING FUNCTIONALITY: 
-Though I was able to add amplify to the project, I could not successfully launch to a  Cognito log-in screen and the app finds itself stuck on a given user. If you would like to create a new favorites list for a different user, please go to the Constants class in the app files and update the userEmail function. If you input a name that has been used before, the favorites associated with that name will appear. Otherwise, the user will have an empty favorites list to start. Really wish I'd had more luck with Cognito.
-
-Also, as mentioned above, the favorites list is currently static, and movies get cut off. I tried to implement a lazy column, but my app kept crashing. So the static list was the best that I could do.
-
-Finally, I realized too late I forgot to add an update function to the favorite items. 
+UPCOMING FUNCTIONALITY: 
+Though I was able to add amplify to the project, I could not successfully launch to a  Cognito log-in screen and the app finds itself stuck on a given user. If you would like to create a new favorites list for a different user, please go to the Constants class in the app files and update the userEmail function. If you input a name that has been used before, the favorites associated with that name will appear. Otherwise, the user will have an empty favorites list to start. 
 
 
 ### local
